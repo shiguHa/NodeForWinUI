@@ -13,28 +13,36 @@ namespace NodeForWinUI.ViewModels;
 public partial class MainViewModel : ObservableRecipient
 {
 
-    public ObservableCollection<NodeViewModel> Nodes;
+    public NodeNetworkViewModel NodeNetwork = new();
 
     public MainViewModel()
     {
-        Nodes = new ObservableCollection<NodeViewModel>()
+        var constantNode1 = new ConstantNodeViewModel(new ConstantNode()
         {
-            new ConstantNodeViewModel(new ConstantNode() {InputValue=1}),
-            new ConstantNodeViewModel(new ConstantNode() {InputValue=2}),
-        };
+            InputValue = 1,
+            X = 0,
+            Y = 0,
+            Width = 200,
+            Height = 200
+        });
 
-        Nodes[0].X = 0;
-        Nodes[0].Y = 0;
-        Nodes[0].Width= 200;
-        Nodes[0].Height = 200;
+        var constantNode2 = new ConstantNodeViewModel(new ConstantNode()
+        {
+            InputValue = 2,
+            X = 300,
+            Y = 0,
+            Width = 200,
+            Height = 200
+        });
 
-        Nodes[1].X = 100;
-        Nodes[1].Y = 300;
-        Nodes[1].Width = 200;
-        Nodes[1].Height = 200;
 
-        
 
+        var connectionModel = new NodeConnectionModel();
+
+        var connectionViewModel = new NodeConnectionViewModel(connectionModel);
+        connectionViewModel.Connect(constantNode1, constantNode2);
+
+        NodeNetwork.Connections.Add(connectionViewModel);
 
     }
 }

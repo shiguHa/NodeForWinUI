@@ -18,6 +18,7 @@ public partial class ConstantNodeViewModel : NodeViewModel
         : base(constantNode)
     {
         InputValue = constantNode.InputValue;
+        
     }
 
 }

@@ -32,7 +32,7 @@
                   Canvas.Left="270" Canvas.Top="400"/>
         </Canvas>-->
 
-        <node:NodeCanvas Grid.Row="1" DataContext="{x:Bind ViewModel.Nodes}"/>
+        <node:NodeCanvas Grid.Row="1" DataContext="{x:Bind ViewModel.NodeNetwork}"/>
 
     </Grid>
 </Page>

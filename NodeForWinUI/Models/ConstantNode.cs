@@ -16,11 +16,7 @@ public sealed partial class ConstantNode : NodeBase
     public ConstantNode()
     {
     
-           Name = "Constant";
+         Name = "Constant";
     }
 
-    protected override double? Culculate(List<double?> PrevResults)
-    {
-        return InputValue;
-    }
 }

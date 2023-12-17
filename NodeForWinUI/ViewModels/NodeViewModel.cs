@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using NodeForWinUI.Models;
 
 namespace NodeForWinUI.ViewModels;
+
+
 public partial class NodeViewModel : ObservableRecipient
 {
 
@@ -26,47 +29,63 @@ public partial class NodeViewModel : ObservableRecipient
     [ObservableProperty]
     private string _name;
 
-    [ObservableProperty]
-    private double _result;
+    public ObservableCollection<NodeConnectorModel> Inputs { get; private set; } = new ObservableCollection<NodeConnectorModel>();
 
+    public ObservableCollection<NodeConnectorModel> Outputs { get; private set; } = new ObservableCollection<NodeConnectorModel>();
 
-    public ObservableCollection<NodeInConnectionViewModel> InConnections{get;}
-
-    public ObservableCollection<NodeOutConnectionViewModel> OutConnections{get;}
 
     public NodeBase InnerModel
     {
         get; private set;
     }
 
+
     public NodeViewModel(NodeBase node)
     {
         InnerModel = node;
-        Width = 200;
-        Height = 200;
+        Inputs.Add(new());
+        Inputs.Add(new());
+        Outputs.Add(new());
 
-        InConnections = new ObservableCollection<NodeInConnectionViewModel>();
-        foreach (var prevNode in InnerModel.PrevNodes)
+        InnerModel.Inputs.CollectionChanged += (s, e) =>
         {
-            InConnections.Add(new NodeInConnectionViewModel(this, prevNode));
-        }
-
-        InnerModel.PrevNodes.CollectionChanged += (s, e) =>
-        {
-        
+            Inputs = (ObservableCollection<NodeConnectorModel>)s;
         };
 
-        OutConnections = new ObservableCollection<NodeOutConnectionViewModel>();
-        foreach (var nextNodes in InnerModel.NextNodes)
+        InnerModel.Outputs.CollectionChanged += (s, e) =>
         {
-            OutConnections.Add(new NodeOutConnectionViewModel(this, nextNodes));
-        }
+            Outputs = (ObservableCollection<NodeConnectorModel>)s;
+        };
     }
 
-    partial void OnXChanged(double value) => InnerModel.X = value;
-    partial void OnYChanged(double value) => InnerModel.Y = value;
 
-    partial void OnNameChanged(string value) => InnerModel.Name = value;
+    public void AddInputConnector()
+    {
+        InnerModel.AddInputConnector();
+    }
 
+    public void AddOutputConnector()
+    {
+        InnerModel.AddOutputConnector();
+    }
+
+    private void OnXChanged()
+    {
+           InnerModel.X = X;
+     }
+    private void OnYChanged()
+    {
+        InnerModel.Y = Y;
+    }
+
+    private void OnWidthChanged()
+    {
+        InnerModel.Width = Width;
+    }
+
+    private void OnHeightChanged()
+    {
+        InnerModel.Height = Height;
+    }
 
 }

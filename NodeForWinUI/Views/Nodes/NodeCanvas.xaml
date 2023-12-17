@@ -11,7 +11,7 @@
 
     <Grid>
         <!-- Line用 -->
-        <ItemsControl ItemsSource="{Binding }" 
+        <ItemsControl ItemsSource="{Binding Connections}" 
                   Background="Transparent"
                   >
             <ItemsControl.ItemsPanel>
@@ -24,7 +24,7 @@
                     <Grid>
                         <local:NodeLine DataContext="{Binding FixedConnection}" />
 
-                        <ItemsControl ItemsSource="{Binding Path=InConnections}" 
+                        <ItemsControl ItemsSource="{Binding}" 
                                       Background="Transparent"
                                       >
                             <ItemsControl.ItemsPanel>
@@ -60,7 +60,7 @@
         </ItemsControl>
 
         <!-- Node用 -->
-        <ItemsControl ItemsSource="{Binding}" 
+        <ItemsControl ItemsSource="{Binding Nodes}" 
                 Background="Transparent"
                 >
             <ItemsControl.ItemsPanel>

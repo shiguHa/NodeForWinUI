@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace NodeForWinUI.Models;
-public partial class NodeConnectModel: ObservableObject
+public sealed partial class NodeConnectionModel : ObservableObject
 {
 
     [ObservableProperty]
-    public NodeBase? _connectNode;
+    private NodeConnectorModel _input;
 
     [ObservableProperty]
-    public int _connectIndex;
+    private NodeConnectorModel _output;
 
-    public NodeConnectModel()
-    {
-    
-       }
+
 }
-

@@ -25,7 +25,6 @@
                 </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </Grid>
-        <TextBlock Text="{Binding Result.Value}" FontSize="14" HorizontalAlignment="Right"  Margin="0,-15,0,0" Width="45"/>
     </StackPanel>
 </UserControl>
 

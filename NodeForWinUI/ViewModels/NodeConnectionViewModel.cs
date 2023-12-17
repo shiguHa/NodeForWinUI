@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -32,23 +33,46 @@ public partial class NodeConnectionViewModel : ObservableObject
     [ObservableProperty]
     private Visibility _visible;
 
+    [ObservableProperty]
+    private NodeConnectorModel _input;
 
-    public NodeViewModel Parent
-    {
-        get; private set;
-    }
+    [ObservableProperty]
+    private NodeConnectorModel _output;
 
-    public NodeConnectModel InnerModel
+    public SolidColorBrush Color { get; } = new SolidColorBrush(Colors.Red);
+
+
+    public NodeConnectionModel InnerModel
     {
         get; private set;
     }
 
     #endregion
 
-    public NodeConnectionViewModel(NodeViewModel node, NodeConnectModel nodeConnectModel)
+    public NodeConnectionViewModel(NodeConnectionModel nodeConnectionModel)
     {
-        Parent = node;
+        InnerModel = nodeConnectionModel;
+        Visible = Visibility.Visible;
+    }
 
+    public void Connect(NodeConnectorModel src, NodeConnectorModel dst)
+    {
+        LineFromX = src.ConnectNode.X;
+        LineFromY = src.ConnectNode.Y;
+        LineToX = dst.ConnectNode.X;
+        LineToY = dst.ConnectNode.Y;
+
+        UpdateBeziePathData();
+    }
+
+    public void Connect(NodeViewModel src, NodeViewModel dst)
+    {
+        LineFromX = src.X;
+        LineFromY = src.Y;
+        LineToX = dst.X;
+        LineToY = dst.Y;
+
+        UpdateBeziePathData();
     }
 
 
@@ -57,19 +81,7 @@ public partial class NodeConnectionViewModel : ObservableObject
         BeziePathData = $"M {LineFromX},{LineFromY} C {LineFromX},{LineToY} {LineToX},{LineFromY} {LineToX},{LineToY}";
     }
 
-    public void Docking(NodeConnectionViewModel nodeConnectionViewModel)
-    {
 
-        if (nodeConnectionViewModel is NodeInConnectionViewModel)
-        {
-
-        }
-        else if (nodeConnectionViewModel is NodeOutConnectionViewModel)
-        {
-
-
-        }
-    }
 
     partial void OnLineFromXChanged(double value) => UpdateBeziePathData();
     partial void OnLineFromYChanged(double value) => UpdateBeziePathData();
@@ -77,65 +89,3 @@ public partial class NodeConnectionViewModel : ObservableObject
     partial void OnLineToYChanged(double value) => UpdateBeziePathData();
 }
 
-
-public class NodeInConnectionViewModel : NodeConnectionViewModel
-{
-    public NodeInConnectionViewModel(NodeViewModel Node, NodeConnectModel nodeConnectModel)
-        : base(Node, nodeConnectModel)
-    {
-
-    }
-
-}
-
-public class NodeOutConnectionViewModel : NodeConnectionViewModel
-{
-    public NodeOutConnectionViewModel(NodeViewModel Node, NodeConnectModel nodeConnectModel)
-       : base(Node, nodeConnectModel)
-    {
-    }
-
-}
-
-public partial class NodeFixedConnectionViewModel : ObservableObject
-{
-
-    [ObservableProperty]
-    private double _lineFromX;
-
-    [ObservableProperty]
-    private double _lineFromY;
-
-    [ObservableProperty]
-    private double _lineToX;
-
-    [ObservableProperty]
-    private double _lineToY;
-
-    [ObservableProperty]
-    private string _beziePathData;
-
-    [ObservableProperty]
-    private Visibility _visible;
-
-    public SolidColorBrush Color { get; } = new SolidColorBrush(Colors.DarkGray);
-
-    protected NodeViewModel Parent;
-    private List<IDisposable> disposables = new List<IDisposable>();
-
-    public NodeConnectModel InnerModel
-    {
-        get; private set;
-    }
-
-    public NodeFixedConnectionViewModel(NodeViewModel Node, NodeConnectModel nodeConnectModel)
-    {
-        Parent = Node;
-        InnerModel = nodeConnectModel;
-
-        LineFromX = 0;
-        LineFromY = 0;
-        LineToX = 0;
-        LineToY = 0;
-    }
-}

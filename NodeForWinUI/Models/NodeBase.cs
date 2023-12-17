@@ -17,112 +17,137 @@ public abstract partial class NodeBase : ObservableObject
     private double _y;
 
     [ObservableProperty]
-    private string _name;
+    private double _width;
 
     [ObservableProperty]
-    private double? _result;
+    private double _height;
 
-    public ObservableCollection<NodeConnectModel> PrevNodes {get;} = new ObservableCollection<NodeConnectModel>();
+    [ObservableProperty]
+    private string _name;
 
-    public ObservableCollection<NodeConnectModel> NextNodes { get; } = new ObservableCollection<NodeConnectModel>();
+    public ObservableCollection<NodeConnectorModel> Inputs { get; } = new ObservableCollection<NodeConnectorModel>();
+
+    public ObservableCollection<NodeConnectorModel> Outputs { get; } = new ObservableCollection<NodeConnectorModel>();
 
     public NodeBase()
     {
-        this.PropertyChanged += NodeBase_PropertyChanged;
 
-        PrevNodes.CollectionChanged += (s, e) => Do(null);
-        NextNodes.CollectionChanged += (s, e) => Do(null);
     }
 
-    private void NodeBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    public void AddInputConnector()
     {
-        if (e.PropertyName != nameof(Name))
+        Inputs.Add(new NodeConnectorModel()
         {
-            Do(null);
-        }
+            ConnectIndex = Inputs.Count,
+            IsInput = true,
+            ConnectNode = this
+        }) ;
     }
 
-    public virtual double? Do(NodeBase? Caller)
+    public void AddOutputConnector()
     {
-        List<double?> results = new List<double?>();
-
-        for (int i = 0; i < PrevNodes.Count; ++i)
+        Outputs.Add(new NodeConnectorModel()
         {
-            double? prevNodeResult = null;
-
-            var prevNode = PrevNodes[i];
-
-            if (prevNode.ConnectNode != null)
-            {
-                prevNodeResult = prevNode.ConnectNode.Result;
-                if (prevNodeResult == null)
-                {
-                    prevNodeResult = prevNode.ConnectNode.Do(this);
-                }
-            }
-
-            results.Add(prevNodeResult);
-        }
-
-        Result = Culculate(results);
-
-        if (Caller == null)
-        {
-            foreach (var nextNode in NextNodes)
-            {
-                nextNode.ConnectNode?.Do(null);
-            }
-
-        }
-
-        return Result;
+            ConnectIndex = Outputs.Count,
+            IsInput = false,
+            ConnectNode = this
+        });
     }
 
-    protected abstract double? Culculate(List<double?> PrevResults);
-
-
-
-    public void ChangeConnectNodeNum(ObservableCollection<NodeConnectModel> Nodes, int NewNodeNum)
-    {
-        if (NewNodeNum < 0) return;
-
-        if (Nodes.Count > NewNodeNum)
-        {
-            while (Nodes.Count != NewNodeNum)
-            {
-                var lastNodeConnection = Nodes.Last();
-                if (lastNodeConnection.ConnectNode != null)
-                {
-                    var lastNode = lastNodeConnection.ConnectNode;
-                    var removeConnectionNodes = Nodes == PrevNodes ? lastNode.NextNodes : lastNode.PrevNodes;
-                    RemoveTheReference(removeConnectionNodes, this);
-                }
-
-
-                Nodes.Remove(lastNodeConnection);
-            }
-        }
-        else
-        {
-            while (Nodes.Count != NewNodeNum)
-            {
-                Nodes.Add(new NodeConnectModel()
-                {
-                    ConnectIndex = Nodes.Count
-                });
-            }
-        }
-    }
-
-    public void RemoveTheReference(ObservableCollection<NodeConnectModel> ConnectedNodes, NodeBase RemoveNode)
-    {
-        foreach (var connectedNode in ConnectedNodes)
-        {
-            if (connectedNode.ConnectNode == RemoveNode)
-            {
-                connectedNode.ConnectNode = null;
-            }
-        }
-    }
 
 }
+
+
+
+
+
+//private void NodeBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+//{
+//    if (e.PropertyName != nameof(Name))
+//    {
+//        Do(null);
+//    }
+//}
+
+//public virtual double? Do(NodeBase? Caller)
+//{
+//    List<double?> results = new List<double?>();
+
+//    for (int i = 0; i < PrevNodes.Count; ++i)
+//    {
+//        double? prevNodeResult = null;
+
+//        var prevNode = PrevNodes[i];
+
+//        if (prevNode.ConnectNode != null)
+//        {
+//            prevNodeResult = prevNode.ConnectNode.Result;
+//            if (prevNodeResult == null)
+//            {
+//                prevNodeResult = prevNode.ConnectNode.Do(this);
+//            }
+//        }
+
+//        results.Add(prevNodeResult);
+//    }
+
+//    Result = Calculate(results);
+
+//    if (Caller == null)
+//    {
+//        foreach (var nextNode in NextNodes)
+//        {
+//            nextNode.ConnectNode?.Do(null);
+//        }
+
+//    }
+
+//    return Result;
+//}
+
+//protected abstract double? Calculate(List<double?> PrevResults);
+
+
+
+//public void ChangeConnectNodeNum(ObservableCollection<NodeConnectorModel> Nodes, int NewNodeNum)
+//{
+//    if (NewNodeNum < 0) return;
+
+//    if (Nodes.Count > NewNodeNum)
+//    {
+//        while (Nodes.Count != NewNodeNum)
+//        {
+//            var lastNodeConnection = Nodes.Last();
+//            if (lastNodeConnection.ConnectNode != null)
+//            {
+//                var lastNode = lastNodeConnection.ConnectNode;
+//                var removeConnectionNodes = Nodes == PrevNodes ? lastNode.NextNodes : lastNode.PrevNodes;
+//                RemoveTheReference(removeConnectionNodes, this);
+//            }
+
+
+//            Nodes.Remove(lastNodeConnection);
+//        }
+//    }
+//    else
+//    {
+//        while (Nodes.Count != NewNodeNum)
+//        {
+//            Nodes.Add(new NodeConnectorModel()
+//            {
+//                ConnectIndex = Nodes.Count
+//            });
+//        }
+//    }
+//}
+
+//public void RemoveTheReference(ObservableCollection<NodeConnectorModel> ConnectedNodes, NodeBase RemoveNode)
+//{
+//    foreach (var connectedNode in ConnectedNodes)
+//    {
+//        if (connectedNode.ConnectNode == RemoveNode)
+//        {
+//            connectedNode.ConnectNode = null;
+//        }
+//    }
+//}
