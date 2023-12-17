@@ -17,6 +17,12 @@ public abstract partial class NodeBase : ObservableObject
     private double _y;
 
     [ObservableProperty]
+    private double _width;
+
+    [ObservableProperty]
+    private double _height;
+
+    [ObservableProperty]
     private string _name;
 
     [ObservableProperty]

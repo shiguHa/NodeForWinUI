@@ -4,11 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:node="using:NodeForWinUI.Views.Nodes"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <Border x:Name="root" BorderThickness="2" BorderBrush="Black" CornerRadius="5"
-                Width="100" Height="80">
+                Width="100" Height="80"
+                Grid.Row="0">
             <Canvas >
                 <Border x:Name="header" BorderThickness="0,0,0,2" BorderBrush="Red" Width="{Binding Path=Width, ElementName=root}" Height="20">
                     <TextBlock Text="Header" Foreground="Red"  HorizontalAlignment="Center"/>
@@ -19,13 +26,13 @@
             </Canvas>
          </Border>
 
-        <Canvas >
+        <!--<Canvas >
             <Path Stroke="DarkGoldenRod" StrokeThickness="4" 
                             Data="M1,15 L85,85"
                   Canvas.Left="270" Canvas.Top="400"/>
-        </Canvas>
+        </Canvas>-->
 
-
+        <node:NodeCanvas Grid.Row="1" DataContext="{x:Bind ViewModel.Nodes}"/>
 
     </Grid>
 </Page>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="NodeForWinUI.Views.Nodes.NodeCanvas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NodeForWinUI.Views.Nodes"
+    xmlns:node="using:NodeForWinUI.Views.Nodes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <!-- Line用 -->
+        <ItemsControl ItemsSource="{Binding }" 
+                  Background="Transparent"
+                  >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <local:NodeLine DataContext="{Binding FixedConnection}" />
+
+                        <ItemsControl ItemsSource="{Binding In}" 
+                                      Background="Transparent"
+                                      >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:NodeLine />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding Out}" 
+                                      Background="Transparent"
+                                      >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:NodeLine />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Node用 -->
+        <ItemsControl ItemsSource="{Binding}" 
+                Background="Transparent"
+                >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--<Rectangle Width="100" Height="100" Fill="Black">
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>-->
+                    
+                    <node:NodeContainer >
+                        <node:NodeContainer.RenderTransform>
+                            <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}"/>
+                        </node:NodeContainer.RenderTransform>
+                    </node:NodeContainer >
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using NodeForWinUI.Models;
 
 namespace NodeForWinUI.ViewModels;
 
@@ -10,7 +12,20 @@ namespace NodeForWinUI.ViewModels;
 
 public partial class MainViewModel : ObservableRecipient
 {
+
+    public ObservableCollection<NodeViewModel> Nodes;
+
     public MainViewModel()
     {
+        Nodes = new ObservableCollection<NodeViewModel>()
+        {
+            new ConstantNodeViewModel(new ConstantNode() {InputValue=211}),
+
+        };
+
+        Nodes[0].X = 200;
+        Nodes[0].Y = 300;
+        Nodes[0].Width= 100;
+        Nodes[0].Height = 100;
     }
 }
