@@ -19,13 +19,22 @@ public partial class MainViewModel : ObservableRecipient
     {
         Nodes = new ObservableCollection<NodeViewModel>()
         {
-            new ConstantNodeViewModel(new ConstantNode() {InputValue=211}),
-
+            new ConstantNodeViewModel(new ConstantNode() {InputValue=1}),
+            new ConstantNodeViewModel(new ConstantNode() {InputValue=2}),
         };
 
-        Nodes[0].X = 200;
-        Nodes[0].Y = 300;
-        Nodes[0].Width= 100;
-        Nodes[0].Height = 100;
+        Nodes[0].X = 0;
+        Nodes[0].Y = 0;
+        Nodes[0].Width= 200;
+        Nodes[0].Height = 200;
+
+        Nodes[1].X = 100;
+        Nodes[1].Y = 300;
+        Nodes[1].Width = 200;
+        Nodes[1].Height = 200;
+
+        
+
+
     }
 }

@@ -18,23 +18,55 @@ public partial class NodeViewModel : ObservableRecipient
     private double _y;
 
     [ObservableProperty]
-    private double width;
+    private double _width;
 
     [ObservableProperty]
-    private double height;
+    private double _height;
 
     [ObservableProperty]
-    private double name;
+    private string _name;
 
     [ObservableProperty]
-    private double result;
+    private double _result;
 
 
-    public ObservableCollection<object> In{get;}
+    public ObservableCollection<NodeInConnectionViewModel> InConnections{get;}
+
+    public ObservableCollection<NodeOutConnectionViewModel> OutConnections{get;}
+
+    public NodeBase InnerModel
+    {
+        get; private set;
+    }
 
     public NodeViewModel(NodeBase node)
     {
-    
+        InnerModel = node;
+        Width = 200;
+        Height = 200;
+
+        InConnections = new ObservableCollection<NodeInConnectionViewModel>();
+        foreach (var prevNode in InnerModel.PrevNodes)
+        {
+            InConnections.Add(new NodeInConnectionViewModel(this, prevNode));
+        }
+
+        InnerModel.PrevNodes.CollectionChanged += (s, e) =>
+        {
+        
+        };
+
+        OutConnections = new ObservableCollection<NodeOutConnectionViewModel>();
+        foreach (var nextNodes in InnerModel.NextNodes)
+        {
+            OutConnections.Add(new NodeOutConnectionViewModel(this, nextNodes));
+        }
     }
+
+    partial void OnXChanged(double value) => InnerModel.X = value;
+    partial void OnYChanged(double value) => InnerModel.Y = value;
+
+    partial void OnNameChanged(string value) => InnerModel.Name = value;
+
 
 }

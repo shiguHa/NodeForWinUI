@@ -33,7 +33,7 @@
 
         <Popup x:Name="inputPopup"
                PlacementTarget="{Binding ElementName=nodeBorder}"
-               IsOpen="{Binding IsInputOpen.Value}"
+               IsOpen="{Binding IsInputOpen}"
                Width="200">
             <Border Background="LightBlue" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Width="140" Height="35" >
                 <StackPanel Orientation="Horizontal">

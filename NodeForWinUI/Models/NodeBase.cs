@@ -17,12 +17,6 @@ public abstract partial class NodeBase : ObservableObject
     private double _y;
 
     [ObservableProperty]
-    private double _width;
-
-    [ObservableProperty]
-    private double _height;
-
-    [ObservableProperty]
     private string _name;
 
     [ObservableProperty]
@@ -85,4 +79,50 @@ public abstract partial class NodeBase : ObservableObject
     }
 
     protected abstract double? Culculate(List<double?> PrevResults);
+
+
+
+    public void ChangeConnectNodeNum(ObservableCollection<NodeConnectModel> Nodes, int NewNodeNum)
+    {
+        if (NewNodeNum < 0) return;
+
+        if (Nodes.Count > NewNodeNum)
+        {
+            while (Nodes.Count != NewNodeNum)
+            {
+                var lastNodeConnection = Nodes.Last();
+                if (lastNodeConnection.ConnectNode != null)
+                {
+                    var lastNode = lastNodeConnection.ConnectNode;
+                    var removeConnectionNodes = Nodes == PrevNodes ? lastNode.NextNodes : lastNode.PrevNodes;
+                    RemoveTheReference(removeConnectionNodes, this);
+                }
+
+
+                Nodes.Remove(lastNodeConnection);
+            }
+        }
+        else
+        {
+            while (Nodes.Count != NewNodeNum)
+            {
+                Nodes.Add(new NodeConnectModel()
+                {
+                    ConnectIndex = Nodes.Count
+                });
+            }
+        }
+    }
+
+    public void RemoveTheReference(ObservableCollection<NodeConnectModel> ConnectedNodes, NodeBase RemoveNode)
+    {
+        foreach (var connectedNode in ConnectedNodes)
+        {
+            if (connectedNode.ConnectNode == RemoveNode)
+            {
+                connectedNode.ConnectNode = null;
+            }
+        }
+    }
+
 }

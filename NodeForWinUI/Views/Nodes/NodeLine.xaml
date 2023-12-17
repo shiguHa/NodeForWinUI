@@ -9,9 +9,9 @@
     mc:Ignorable="d">
 
     <Path 
-            Data="{Binding BeziePathData.Value}" 
-            Stroke="{Binding Color}" 
+            Data="{Binding Path=BeziePathData}" 
+            Stroke="{Binding Path=Color}" 
             StrokeThickness="2"  
-            Visibility="{Binding Visible.Value}"
+            Visibility="{Binding Path=Visible}"
             />
 </UserControl>

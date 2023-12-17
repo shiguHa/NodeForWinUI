@@ -24,7 +24,7 @@
                     <Grid>
                         <local:NodeLine DataContext="{Binding FixedConnection}" />
 
-                        <ItemsControl ItemsSource="{Binding In}" 
+                        <ItemsControl ItemsSource="{Binding Path=InConnections}" 
                                       Background="Transparent"
                                       >
                             <ItemsControl.ItemsPanel>
@@ -38,7 +38,8 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <ItemsControl ItemsSource="{Binding Out}" 
+                        
+                        <ItemsControl ItemsSource="{Binding Path=OutConnections}" 
                                       Background="Transparent"
                                       >
                             <ItemsControl.ItemsPanel>
@@ -69,12 +70,6 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <!--<Rectangle Width="100" Height="100" Fill="Black">
-                        <Rectangle.RenderTransform>
-                            <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>-->
-                    
                     <node:NodeContainer >
                         <node:NodeContainer.RenderTransform>
                             <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}"/>
