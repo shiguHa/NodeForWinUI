@@ -11,7 +11,7 @@ using NodeForWinUI.Models;
 namespace NodeForWinUI.ViewModels;
 
 
-public partial class NodeViewModel : ObservableRecipient
+public partial class NodeViewModelBase : ObservableRecipient
 {
 
     [ObservableProperty]
@@ -40,7 +40,7 @@ public partial class NodeViewModel : ObservableRecipient
     }
 
 
-    public NodeViewModel(NodeBase node)
+    public NodeViewModelBase(NodeBase node)
     {
         InnerModel = node;
         X = InnerModel.X;

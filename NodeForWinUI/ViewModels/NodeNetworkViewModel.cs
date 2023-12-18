@@ -10,10 +10,10 @@ using CommunityToolkit.Mvvm.Input;
 namespace NodeForWinUI.ViewModels;
 public partial class NodeNetworkViewModel : ObservableRecipient
 {
-    public ObservableCollection<NodeViewModel> Nodes
+    public ObservableCollection<NodeViewModelBase> Nodes
     {
         get; private set;
-    } = new ObservableCollection<NodeViewModel>();
+    } = new ObservableCollection<NodeViewModelBase>();
 
     public ObservableCollection<NodeConnectionViewModel> Connections
     {

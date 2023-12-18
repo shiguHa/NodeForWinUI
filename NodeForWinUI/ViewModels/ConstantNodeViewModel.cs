@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using NodeForWinUI.Models;
 
 namespace NodeForWinUI.ViewModels;
-public partial class ConstantNodeViewModel : NodeViewModel
+public partial class ConstantNodeViewModel : NodeViewModelBase
 {
 
     [ObservableProperty]

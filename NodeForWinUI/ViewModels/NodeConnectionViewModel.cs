@@ -31,7 +31,7 @@ public partial class NodeConnectionViewModel : ObservableObject
     private string _beziePathData;
 
     [ObservableProperty]
-    private Visibility _visible;
+    private Visibility _visible = Visibility.Visible;
 
     [ObservableProperty]
     private NodeConnectorModel _input;
@@ -52,7 +52,6 @@ public partial class NodeConnectionViewModel : ObservableObject
     public NodeConnectionViewModel(NodeConnectionModel nodeConnectionModel)
     {
         InnerModel = nodeConnectionModel;
-        Visible = Visibility.Visible;
     }
 
     public void Connect(NodeConnectorModel src, NodeConnectorModel dst)
@@ -79,6 +78,7 @@ public partial class NodeConnectionViewModel : ObservableObject
         var inputMiddleY = Input.EquippedNode.Y + Input.EquippedNode.Height;
         var outputMiddleX = Output.EquippedNode.X + Output.EquippedNode.Width / 2;
         var outputMiddleY = Output.EquippedNode.Y;
+
 
         BeziePathData = $"M {inputMiddleX},{inputMiddleY} C {inputMiddleX},{outputMiddleY} {outputMiddleX},{inputMiddleY} {outputMiddleX},{outputMiddleY}";
     }
