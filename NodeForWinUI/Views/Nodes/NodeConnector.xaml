@@ -13,7 +13,6 @@
             Width="15" Height="15" Background="DarkBlue" CornerRadius="7" Margin="1"
 			HorizontalAlignment="Center" VerticalAlignment="Bottom"
      />
-        <Button Content="De" Click="Button_Click" />
     </StackPanel>
 
 </UserControl>

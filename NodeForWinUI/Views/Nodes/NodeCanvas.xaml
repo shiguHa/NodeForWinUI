@@ -38,8 +38,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <node:NodeContainer >
-                        <node:NodeContainer.RenderTransform>
-                            <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}"/>
+                        <node:NodeContainer.RenderTransform >
+                            <TranslateTransform X="{Binding Path=X}" Y="{Binding Path=Y}" />
                         </node:NodeContainer.RenderTransform>
                     </node:NodeContainer >
                 </DataTemplate>

@@ -16,9 +16,9 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <Grid Width="{Binding Path=Width}" Height="{Binding Path=Height}" >
-            <ContentControl Content="{Binding}">
+    <StackPanel Orientation="Vertical" >
+        <Grid Width="{Binding Width}" Height="{Binding Height}" >
+            <ContentControl Content="{Binding}" >
                 <ContentControl.ContentTemplateSelector>
                     <helpers:NodeTemplateSelector 
                         ConstantNodeTemplate="{StaticResource ConstantNodeTemplate}" />

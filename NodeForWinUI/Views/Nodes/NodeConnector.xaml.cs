@@ -53,35 +53,10 @@ public sealed partial class NodeConnector : UserControl
 
 
 
-    public double RelativeX
-    {
-        get
-        {
-            return (double)GetValue(RelativeXProperty);
-        }
-        set
-        {
-            SetValue(RelativeXProperty, value);
-        }
-    }
-
-    // Using a DependencyProperty as the backing store for RelativeX.  This enables animation, styling, binding, etc...
-    public static readonly DependencyProperty RelativeXProperty =
-        DependencyProperty.Register("RelativeX", typeof(double), typeof(NodeConnector), new PropertyMetadata(0, OnRelativeXChanged));
-
-    private static void OnRelativeXChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-    {
-        Debug.WriteLine("Nameプロパティが{0}から{1}に変わりました", e.OldValue, e.NewValue);
-    }
-
-
     public NodeConnector()
     {
         this.InitializeComponent();
 
-        var transform = this.TransformToVisual(ConnectBorder);
-        var point = transform.TransformPoint(new Point(0, 0));
-        RelativeX = point.X;
         //
 
     }

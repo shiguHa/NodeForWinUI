@@ -7,63 +7,61 @@
     xmlns:node="using:NodeForWinUI.Views.Nodes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid>
-        <Border x:Name="nodeBorder" Background="LightBlue" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Margin="0,10,0,10"/>
+    <RelativePanel x:Name="root" Width="{Binding Width}" Height="{Binding Height}" >
 
+        <Border x:Name="header" 
+                BorderThickness="2,2,2,0" BorderBrush="Red" CornerRadius="5,5,0,0"
+                Width="{Binding Path=Width}" Height="20" Margin="0,7,0,0"
+                RelativePanel.AlignTopWithPanel="True">
+            <TextBlock Text="Header" Foreground="Red"  HorizontalAlignment="Center"/>
+        </Border>
 
-        <ItemsControl ItemsSource="{Binding Inputs}" >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <node:NodeConnector ConnctColor="DarkGreen" VerticalAlignment="Top" HorizontalAlignment="Center"
-                                        RelativeX="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <!--<ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="Grid.Column" Value="{Binding ColumnIndex.Value}" />
-                    <Setter Property="Grid.Row" Value="0" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>-->
-        </ItemsControl>
+        <Border x:Name="content" 
+                BorderThickness="2" BorderBrush="Red" 
+                Width="{Binding Path=Width}" Margin="0,0,0,7"
+                RelativePanel.Below="header"
+                RelativePanel.AlignBottomWithPanel="True">
+            <TextBlock Text="value" Foreground="Red"  HorizontalAlignment="Center"/>
+        </Border>
+        
+        <Grid RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <ItemsControl ItemsSource="{Binding Inputs}" x:Name="InputConnectors">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:UniformGrid Rows="1" ColumnSpacing="10" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <node:NodeConnector ConnctColor="DarkGreen" 
+                                            VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
 
+        <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <ItemsControl ItemsSource="{Binding Outputs}" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:UniformGrid Rows="1" ColumnSpacing="10" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <node:NodeConnector ConnctColor="DarkBlue" 
+                                            VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
 
-        <node:NodeConnector DataContext="{Binding Outputs[0]}" ConnctColor="DarkBlue" />
-
-        <ToggleButton Name="tbWithPopup" Width="15" Height="15" Margin="0,10,0,10"
-                      HorizontalAlignment="Right" VerticalAlignment="Top"
-                      IsChecked="{Binding ElementName=inputPopup, Path=IsOpen}">
-            <!--<ToggleButton.Style>
-                <Style TargetType="ToggleButton">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=inputPopup, Path=IsOpen}" Value="True">
-                            <Setter Property="IsHitTestVisible" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ToggleButton.Style>-->
-            <Polygon Points="0,0 2,0.5, 0,1" Fill="DarkBlue" Stretch="Fill" />
-        </ToggleButton>
 
         <TextBlock Text="{Binding InputValue}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
         <!--<Button Content="ForDebug" Click="Button_Click" />-->
 
-        <Popup x:Name="inputPopup"
-               PlacementTarget="{Binding ElementName=nodeBorder}"
-               IsOpen="{Binding IsInputOpen}"
-               Width="200">
-            <Border Background="LightBlue" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Width="140" Height="35" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Value:" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-        </Popup>
-    </Grid>
+    </RelativePanel>
 </UserControl>

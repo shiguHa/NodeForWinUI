@@ -22,7 +22,7 @@ public partial class MainViewModel : ObservableRecipient
             InputValue = 1,
             X = 300,
             Y = 300,
-            Width = 200,
+            Width = 100,
             Height = 200
         });
 
