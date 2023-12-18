@@ -13,15 +13,17 @@
         <Border x:Name="nodeBorder" Background="LightBlue" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Margin="0,10,0,10"/>
 
 
-        <ItemsControl ItemsSource="{Binding Path=Inputs}" >
+        <ItemsControl ItemsSource="{Binding Inputs}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <node:NodeConnector ConnctColor="DarkGreen" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    <node:NodeConnector ConnctColor="DarkGreen" VerticalAlignment="Top" HorizontalAlignment="Center"
+                                        RelativeX="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <!--<ItemsControl.ItemContainerStyle>
@@ -51,6 +53,7 @@
         </ToggleButton>
 
         <TextBlock Text="{Binding InputValue}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+        <!--<Button Content="ForDebug" Click="Button_Click" />-->
 
         <Popup x:Name="inputPopup"
                PlacementTarget="{Binding ElementName=nodeBorder}"

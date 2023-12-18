@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace NodeForWinUI.ViewModels;
-public class NodeNetworkViewModel
+public partial class NodeNetworkViewModel : ObservableRecipient
 {
     public ObservableCollection<NodeViewModel> Nodes
     {
@@ -23,4 +25,11 @@ public class NodeNetworkViewModel
     {
 
     }
+
+    [RelayCommand]
+    private void ForDebug()
+    {
+
+    }
+
 }

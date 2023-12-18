@@ -23,4 +23,9 @@ public sealed partial class ConstantNode : UserControl
     {
         this.InitializeComponent();
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var btn = sender as Button;
+    }
 }

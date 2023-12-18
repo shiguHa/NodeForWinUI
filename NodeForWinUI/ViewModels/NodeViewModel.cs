@@ -49,10 +49,6 @@ public partial class NodeViewModel : ObservableRecipient
         Height = InnerModel.Height;
         Name = InnerModel.Name;
 
-        Inputs.Add(new());
-        Inputs.Add(new());
-        Outputs.Add(new());
-
         InnerModel.PropertyChanged += (s, e) =>
         {
 
@@ -87,6 +83,11 @@ public partial class NodeViewModel : ObservableRecipient
         {
             Outputs = (ObservableCollection<NodeConnectorModel>)s;
         };
+
+
+        AddInputConnector();
+        AddInputConnector();
+        AddOutputConnector();
     }
 
 

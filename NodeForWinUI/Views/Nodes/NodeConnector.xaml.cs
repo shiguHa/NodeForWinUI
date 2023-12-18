@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,8 +22,7 @@ namespace NodeForWinUI.Views.Nodes;
 public sealed partial class NodeConnector : UserControl
 {
 
-    public static readonly DependencyProperty ConnctColorProperty =
-DependencyProperty.Register(
+    public static readonly DependencyProperty ConnctColorProperty =DependencyProperty.Register(
                         "ConnctColor",
                         typeof(SolidColorBrush),
                         typeof(NodeConnector),
@@ -51,8 +51,45 @@ DependencyProperty.Register(
         }
     }
 
+
+
+    public double RelativeX
+    {
+        get
+        {
+            return (double)GetValue(RelativeXProperty);
+        }
+        set
+        {
+            SetValue(RelativeXProperty, value);
+        }
+    }
+
+    // Using a DependencyProperty as the backing store for RelativeX.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty RelativeXProperty =
+        DependencyProperty.Register("RelativeX", typeof(double), typeof(NodeConnector), new PropertyMetadata(0, OnRelativeXChanged));
+
+    private static void OnRelativeXChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+    {
+        Debug.WriteLine("Nameプロパティが{0}から{1}に変わりました", e.OldValue, e.NewValue);
+    }
+
+
     public NodeConnector()
     {
         this.InitializeComponent();
+
+        var transform = this.TransformToVisual(ConnectBorder);
+        var point = transform.TransformPoint(new Point(0, 0));
+        RelativeX = point.X;
+        //
+
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var btn = sender as Button;
+        var trans = this.TransformToVisual(ConnectBorder);
+        var point = trans.TransformPoint(new Point(0, 0));
     }
 }

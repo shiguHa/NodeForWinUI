@@ -9,8 +9,9 @@
 
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         
         <Border x:Name="root" BorderThickness="2" BorderBrush="Black" CornerRadius="5"
@@ -34,5 +35,6 @@
 
         <node:NodeCanvas Grid.Row="1" DataContext="{x:Bind ViewModel.NodeNetwork}"/>
 
+        <Button Content="Debug用" Grid.Row="2" Command="{x:Bind ViewModel.NodeNetwork.ForDebugCommand}" />
     </Grid>
 </Page>

@@ -36,21 +36,19 @@ public abstract partial class NodeBase : ObservableObject
 
     public void AddInputConnector()
     {
-        Inputs.Add(new NodeConnectorModel()
+        Inputs.Add(new NodeConnectorModel(this)
         {
             ConnectIndex = Inputs.Count,
             IsInput = true,
-            ConnectNode = this
         }) ;
     }
 
     public void AddOutputConnector()
     {
-        Outputs.Add(new NodeConnectorModel()
+        Outputs.Add(new NodeConnectorModel(this)
         {
             ConnectIndex = Outputs.Count,
             IsInput = false,
-            ConnectNode = this
         });
     }
 

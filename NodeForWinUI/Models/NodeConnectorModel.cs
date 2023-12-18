@@ -10,7 +10,12 @@ public sealed partial class NodeConnectorModel: ObservableObject
 {
 
     [ObservableProperty]
-    private NodeBase? _connectNode;
+    private NodeBase? _equippedNode;
+
+    public double X { get; set; } = 100;
+    
+    [ObservableProperty] 
+    private double _y;
 
     [ObservableProperty]
     private int _connectIndex;
@@ -22,9 +27,11 @@ public sealed partial class NodeConnectorModel: ObservableObject
     private bool _isInput;
 
 
-    public NodeConnectorModel()
+
+
+    public NodeConnectorModel(NodeBase equippedNode)
     {
-    
-    }
+        EquippedNode = equippedNode;
+      }
 }
 

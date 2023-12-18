@@ -57,24 +57,16 @@ public partial class NodeConnectionViewModel : ObservableObject
 
     public void Connect(NodeConnectorModel src, NodeConnectorModel dst)
     {
-        LineFromX = src.ConnectNode.X;
-        LineFromY = src.ConnectNode.Y;
-        LineToX = dst.ConnectNode.X;
-        LineToY = dst.ConnectNode.Y;
+        Input = src;
+        Output = dst;
+
+        LineFromX = src.EquippedNode.X;
+        LineFromY = src.EquippedNode.Y;
+        LineToX = dst.EquippedNode.X;
+        LineToY = dst.EquippedNode.Y;
 
         UpdateBeziePathData();
     }
-
-    public void Connect(NodeViewModel src, NodeViewModel dst)
-    {
-        LineFromX = src.X;
-        LineFromY = src.Y;
-        LineToX = dst.X;
-        LineToY = dst.Y;
-
-        UpdateBeziePathData();
-    }
-
 
     private void UpdateBeziePathData()
     {
