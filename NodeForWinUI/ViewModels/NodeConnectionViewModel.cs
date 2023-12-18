@@ -68,9 +68,19 @@ public partial class NodeConnectionViewModel : ObservableObject
         UpdateBeziePathData();
     }
 
+    //private void UpdateBeziePathData()
+    //{
+    //    BeziePathData = $"M {LineFromX},{LineFromY} C {LineFromX},{LineToY} {LineToX},{LineFromY} {LineToX},{LineToY}";
+    //}
+
     private void UpdateBeziePathData()
     {
-        BeziePathData = $"M {LineFromX},{LineFromY} C {LineFromX},{LineToY} {LineToX},{LineFromY} {LineToX},{LineToY}";
+        var inputMiddleX = Input.EquippedNode.X + Input.EquippedNode.Width / 2;
+        var inputMiddleY = Input.EquippedNode.Y + Input.EquippedNode.Height;
+        var outputMiddleX = Output.EquippedNode.X + Output.EquippedNode.Width / 2;
+        var outputMiddleY = Output.EquippedNode.Y;
+
+        BeziePathData = $"M {inputMiddleX},{inputMiddleY} C {inputMiddleX},{outputMiddleY} {outputMiddleX},{inputMiddleY} {outputMiddleX},{outputMiddleY}";
     }
 
 
