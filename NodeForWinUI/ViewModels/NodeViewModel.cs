@@ -43,9 +43,40 @@ public partial class NodeViewModel : ObservableRecipient
     public NodeViewModel(NodeBase node)
     {
         InnerModel = node;
+        X = InnerModel.X;
+        Y= InnerModel.Y;
+        Width = InnerModel.Width;
+        Height = InnerModel.Height;
+        Name = InnerModel.Name;
+
         Inputs.Add(new());
         Inputs.Add(new());
         Outputs.Add(new());
+
+        InnerModel.PropertyChanged += (s, e) =>
+        {
+
+            if (e.PropertyName == nameof(InnerModel.X))
+            {
+
+                X = InnerModel.X;
+            }
+            else if (e.PropertyName == nameof(InnerModel.Y))
+            {
+
+                Y = InnerModel.Y;
+            }
+            else if (e.PropertyName == nameof(InnerModel.Width))
+            {
+
+                Width = InnerModel.Width;
+            }
+            else if (e.PropertyName == nameof(InnerModel.Height))
+            {
+
+                Height = InnerModel.Height;
+            }
+        };
 
         InnerModel.Inputs.CollectionChanged += (s, e) =>
         {
@@ -71,8 +102,8 @@ public partial class NodeViewModel : ObservableRecipient
 
     private void OnXChanged()
     {
-           InnerModel.X = X;
-     }
+        InnerModel.X = X;
+    }
     private void OnYChanged()
     {
         InnerModel.Y = Y;

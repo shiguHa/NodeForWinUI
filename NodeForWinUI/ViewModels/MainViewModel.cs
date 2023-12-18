@@ -20,8 +20,8 @@ public partial class MainViewModel : ObservableRecipient
         var constantNode1 = new ConstantNodeViewModel(new ConstantNode()
         {
             InputValue = 1,
-            X = 0,
-            Y = 0,
+            X = 300,
+            Y = 300,
             Width = 200,
             Height = 200
         });
@@ -29,12 +29,14 @@ public partial class MainViewModel : ObservableRecipient
         var constantNode2 = new ConstantNodeViewModel(new ConstantNode()
         {
             InputValue = 2,
-            X = 300,
-            Y = 0,
+            X = 100,
+            Y = 200,
             Width = 200,
             Height = 200
         });
 
+        //NodeNetwork.Nodes.Add(constantNode1);
+        //NodeNetwork.Nodes.Add(constantNode2);
 
 
         var connectionModel = new NodeConnectionModel();

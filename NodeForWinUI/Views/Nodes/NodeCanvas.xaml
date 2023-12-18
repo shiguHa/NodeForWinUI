@@ -11,6 +11,8 @@
 
     <Grid>
         <!-- Line用 -->
+        
+        
         <ItemsControl ItemsSource="{Binding Connections}" 
                   Background="Transparent"
                   >
