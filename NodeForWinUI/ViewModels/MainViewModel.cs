@@ -35,8 +35,8 @@ public partial class MainViewModel : ObservableRecipient
             Height = 200
         });
 
-        //NodeNetwork.Nodes.Add(constantNode1);
-        //NodeNetwork.Nodes.Add(constantNode2);
+        NodeNetwork.Nodes.Add(constantNode1);
+        NodeNetwork.Nodes.Add(constantNode2);
 
 
         var connectionModel = new NodeConnectionModel();

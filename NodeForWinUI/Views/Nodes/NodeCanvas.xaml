@@ -11,11 +11,9 @@
 
     <Grid>
         <!-- Line用 -->
-        
-        
         <ItemsControl ItemsSource="{Binding Connections}" 
-                  Background="Transparent"
-                  >
+                                      Background="Transparent"
+                                      >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas />
@@ -23,40 +21,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <local:NodeLine DataContext="{Binding FixedConnection}" />
-
-                        <ItemsControl ItemsSource="{Binding}" 
-                                      Background="Transparent"
-                                      >
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <Canvas />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <local:NodeLine />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        
-                        <ItemsControl ItemsSource="{Binding Path=OutConnections}" 
-                                      Background="Transparent"
-                                      >
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <Canvas />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <local:NodeLine />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-
-                    </Grid>
+                    <local:NodeLine />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
