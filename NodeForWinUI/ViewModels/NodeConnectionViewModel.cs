@@ -72,24 +72,24 @@ public partial class NodeConnectionViewModel : ObservableObject
 
         const double connectorDiameter = 15;// このコード非常によくないけど仕方なく書いてる。
 
-        var connector1Spacing = Connector1.EquippedNode.ConnectorSpaceing;
-        var connector2Spacing = Connector2.EquippedNode.ConnectorSpaceing;
+        var node1 = Connector1.EquippedNode;
+        var node2 = Connector2.EquippedNode;
 
-        var connector1MiddleX = Connector1.EquippedNode.X + Connector1.EquippedNode.Width / 2;
-        var connector1MiddleY = Connector1.EquippedNode.Y + (Connector1.IsInput ? 0 : Connector1.EquippedNode.Height);
-        var connector2MiddleX = Connector2.EquippedNode.X + Connector2.EquippedNode.Width / 2;
-        var connector2MiddleY = Connector2.EquippedNode.Y + (Connector2.IsInput ? 0 : Connector2.EquippedNode.Height);
+        var connector1MiddleX = node1.X + node1.Width / 2;
+        var connector1MiddleY = node1.Y + (Connector1.IsInput ? 0 : node1.Height);
+        var connector2MiddleX = node2.X + node2.Width / 2;
+        var connector2MiddleY = node2.Y + (Connector2.IsInput ? 0 : node2.Height);
 
-        // Calculate the offset based on the number of inputs and the connector spacing
-        var connectorCount1 = Connector1.IsInput ? Connector1.EquippedNode.Inputs.Count() : Connector1.EquippedNode.Outputs.Count();
-        var connectorCount2 = Connector2.IsInput ? Connector2.EquippedNode.Inputs.Count() : Connector2.EquippedNode.Outputs.Count();
+        var connectorCount1 = Connector1.IsInput ? node1.Inputs.Count() : node1.Outputs.Count();
+        var connectorCount2 = Connector2.IsInput ? node2.Inputs.Count() : node2.Outputs.Count();
 
-        var connector1Offset = connector1Spacing / 2 + connectorDiameter / 2;
-        var connector2Offset = connector2Spacing / 2 + connectorDiameter / 2;
-
+       
         if (connectorCount1 > 1)
         {
+            var connector1Spacing = node1.ConnectorSpaceing;
+            var connector1Offset = connector1Spacing / 2 + connectorDiameter / 2;
             double middleIndex = connectorCount1 / 2;
+
             if (connectorCount1 > 2 && Connector1.ConnectIndex == middleIndex)
             {
                 //真ん中の場合はオフセットを考慮しない    
@@ -108,8 +108,9 @@ public partial class NodeConnectionViewModel : ObservableObject
 
         if (connectorCount2 > 1)
         {
+            var connector2Spacing = node2.ConnectorSpaceing;
             double middleIndex = connectorCount2 / 2;
-
+            var connector2Offset = connector2Spacing / 2 + connectorDiameter / 2;
 
             if (connectorCount2 > 2 && Connector2.ConnectIndex == middleIndex)
             {
