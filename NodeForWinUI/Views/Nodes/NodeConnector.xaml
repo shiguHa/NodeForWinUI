@@ -8,11 +8,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel>
+    <Ellipse x:Name="Connector" 
+             Fill="DarkBlue" Height="15" Width="15" StrokeThickness="2" Stroke="Transparent"/>
+    <!--<StackPanel>
         <Border x:Name="ConnectBorder"
-            Width="15" Height="15" Background="DarkBlue" CornerRadius="7" Margin="1"
+            Width="10" Height="10" Background="DarkBlue" CornerRadius="7" Margin="1"
 			HorizontalAlignment="Center" VerticalAlignment="Bottom"
      />
-    </StackPanel>
+    </StackPanel>-->
 
 </UserControl>

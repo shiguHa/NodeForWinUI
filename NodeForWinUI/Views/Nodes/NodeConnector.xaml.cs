@@ -47,7 +47,7 @@ public sealed partial class NodeConnector : UserControl
         var thisInstance = d as NodeConnector;
         if (thisInstance != null)
         {
-            thisInstance.ConnectBorder.Background = e.NewValue as SolidColorBrush;
+            thisInstance.Connector.Fill = e.NewValue as SolidColorBrush;
         }
     }
 
@@ -64,7 +64,7 @@ public sealed partial class NodeConnector : UserControl
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         var btn = sender as Button;
-        var trans = this.TransformToVisual(ConnectBorder);
+        var trans = this.TransformToVisual(Connector);
         var point = trans.TransformPoint(new Point(0, 0));
     }
 }
