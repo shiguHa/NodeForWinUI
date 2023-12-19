@@ -22,27 +22,27 @@ namespace NodeForWinUI.Views.Nodes;
 public sealed partial class NodeConnector : UserControl
 {
 
-    public static readonly DependencyProperty ConnctColorProperty =DependencyProperty.Register(
-                        "ConnctColor",
+    public static readonly DependencyProperty ConnectorColorProperty =DependencyProperty.Register(
+                        "ConnectorColor",
                         typeof(SolidColorBrush),
                         typeof(NodeConnector),
                         new PropertyMetadata(
                         new SolidColorBrush(Colors.DarkBlue),
-                        ConnctColorPropertyChanged));
-    public SolidColorBrush ConnctColor
+                        ConnectorColorPropertyChanged));
+    public SolidColorBrush ConnectorColor
     {
         get
         {
-            return (SolidColorBrush)GetValue(ConnctColorProperty);
+            return (SolidColorBrush)GetValue(ConnectorColorProperty);
         }
         set
         {
-            SetValue(ConnctColorProperty, value);
+            SetValue(ConnectorColorProperty, value);
         }
     }
 
 
-    private static void ConnctColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void ConnectorColorPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var thisInstance = d as NodeConnector;
         if (thisInstance != null)

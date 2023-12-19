@@ -37,7 +37,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <node:NodeConnector ConnctColor="DarkGreen"  />
+                        <node:NodeConnector ConnectorColor="DarkGreen"  />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -52,7 +52,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <node:NodeConnector ConnctColor="DarkBlue" />
+                        <node:NodeConnector ConnectorColor="DarkBlue" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
