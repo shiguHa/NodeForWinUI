@@ -18,18 +18,6 @@ public partial class NodeConnectionViewModel : ObservableObject
 {
     #region プロパティ
     [ObservableProperty]
-    private double _lineFromX;
-
-    [ObservableProperty]
-    private double _lineFromY;
-
-    [ObservableProperty]
-    private double _lineToX;
-
-    [ObservableProperty]
-    private double _lineToY;
-
-    [ObservableProperty]
     private string _beziePathData;
 
     [ObservableProperty]
@@ -115,11 +103,5 @@ public partial class NodeConnectionViewModel : ObservableObject
             return (connectorCount - connectIndex + 1) * offset;
     }
 
-
-
-    partial void OnLineFromXChanged(double value) => UpdateBeziePathData();
-    partial void OnLineFromYChanged(double value) => UpdateBeziePathData();
-    partial void OnLineToXChanged(double value) => UpdateBeziePathData();
-    partial void OnLineToYChanged(double value) => UpdateBeziePathData();
 }
 
