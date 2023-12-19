@@ -62,10 +62,6 @@ public partial class NodeConnectionViewModel : ObservableObject
         UpdateBeziePathData();
     }
 
-    //private void UpdateBeziePathData()
-    //{
-    //    BeziePathData = $"M {LineFromX},{LineFromY} C {LineFromX},{LineToY} {LineToX},{LineFromY} {LineToX},{LineToY}";
-    //}
 
     private void UpdateBeziePathData()
     {
@@ -130,6 +126,7 @@ public partial class NodeConnectionViewModel : ObservableObject
 
         BeziePathData = $"M {connector1MiddleX},{connector1MiddleY} C {connector1MiddleX},{connector2MiddleY} {connector2MiddleX},{connector1MiddleY} {connector2MiddleX},{connector2MiddleY}";
     }
+
 
 
 
