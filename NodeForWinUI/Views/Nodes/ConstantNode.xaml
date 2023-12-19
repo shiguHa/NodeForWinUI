@@ -35,7 +35,7 @@
         </Border>
         
         <Grid RelativePanel.AlignHorizontalCenterWithPanel="True">
-            <ItemsControl ItemsSource="{Binding Inputs}" x:Name="InputConnectors">
+            <ItemsControl ItemsSource="{Binding Inputs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <toolkit:UniformGrid Style="{StaticResource ConnectorGrid}" />
@@ -43,8 +43,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <node:NodeConnector ConnctColor="DarkGreen" 
-                                            VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <node:NodeConnector ConnctColor="DarkGreen"  />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -59,8 +58,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <node:NodeConnector ConnctColor="DarkBlue" 
-                                            VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <node:NodeConnector ConnctColor="DarkBlue" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
