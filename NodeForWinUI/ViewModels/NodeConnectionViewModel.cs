@@ -30,16 +30,12 @@ public partial class NodeConnectionViewModel : ObservableObject
     public SolidColorBrush Color { get; } = new SolidColorBrush(Colors.Red);
 
 
-    public NodeConnectionModel InnerModel
-    {
-        get; private set;
-    }
 
     #endregion
 
-    public NodeConnectionViewModel(NodeConnectionModel nodeConnectionModel)
+    public NodeConnectionViewModel()
     {
-        InnerModel = nodeConnectionModel;
+        
     }
 
     public void Connect(NodeConnectorModel connector1, NodeConnectorModel connector2)
