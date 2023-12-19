@@ -29,6 +29,9 @@ public partial class NodeViewModelBase : ObservableRecipient
     [ObservableProperty]
     private string _name;
 
+    [ObservableProperty]
+    private int _connectorSpaceing;
+
     public ObservableCollection<NodeConnectorModel> Inputs { get; private set; } = new ObservableCollection<NodeConnectorModel>();
 
     public ObservableCollection<NodeConnectorModel> Outputs { get; private set; } = new ObservableCollection<NodeConnectorModel>();
@@ -42,12 +45,16 @@ public partial class NodeViewModelBase : ObservableRecipient
 
     public NodeViewModelBase(NodeBase node)
     {
+       ConnectorSpaceing = 50;
+
         InnerModel = node;
         X = InnerModel.X;
         Y= InnerModel.Y;
         Width = InnerModel.Width;
         Height = InnerModel.Height;
         Name = InnerModel.Name;
+
+
 
         InnerModel.PropertyChanged += (s, e) =>
         {

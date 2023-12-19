@@ -10,12 +10,6 @@
     xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <Style TargetType="toolkit:UniformGrid" x:Key="ConnectorGrid">
-            <Setter Property="Rows" Value="1"/>
-            <Setter Property="ColumnSpacing" Value="10"/>
-        </Style>
-    </UserControl.Resources>
 
     <RelativePanel x:Name="root" Width="{Binding Width}" Height="{Binding Height}" >
 
@@ -38,7 +32,7 @@
             <ItemsControl ItemsSource="{Binding Inputs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <toolkit:UniformGrid Style="{StaticResource ConnectorGrid}" />
+                        <toolkit:UniformGrid Rows="1" ColumnSpacing="{Binding ConnectorSpaceing}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -53,7 +47,7 @@
             <ItemsControl ItemsSource="{Binding Outputs}" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <toolkit:UniformGrid Style="{StaticResource ConnectorGrid}"  />
+                        <toolkit:UniformGrid Rows="1" ColumnSpacing="{Binding ConnectorSpaceing}"  />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
