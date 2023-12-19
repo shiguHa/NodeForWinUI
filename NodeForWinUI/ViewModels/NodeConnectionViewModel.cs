@@ -72,9 +72,9 @@ public partial class NodeConnectionViewModel : ObservableObject
         var node2 = Connector2.EquippedNode;
 
         var connector1MiddleX = CalculateMiddleX(node1, Connector1.IsInput);
-        var connector1MiddleY = CalculateMiddleY(node1, Connector1);
+        var connector1MiddleY = CalculateY(node1, Connector1);
         var connector2MiddleX = CalculateMiddleX(node2, Connector2.IsInput);
-        var connector2MiddleY = CalculateMiddleY(node2, Connector2);
+        var connector2MiddleY = CalculateY(node2, Connector2);
 
         var connectorCount1 = Connector1.IsInput ? node1.Inputs.Count() : node1.Outputs.Count();
         var connectorCount2 = Connector2.IsInput ? node2.Inputs.Count() : node2.Outputs.Count();
@@ -94,7 +94,7 @@ public partial class NodeConnectionViewModel : ObservableObject
         return node.X + node.Width / 2;
     }
 
-    private double CalculateMiddleY(NodeBase node, NodeConnectorModel connector)
+    private double CalculateY(NodeBase node, NodeConnectorModel connector)
     {
         return node.Y + (connector.IsInput ? 0 : node.Height);
     }
