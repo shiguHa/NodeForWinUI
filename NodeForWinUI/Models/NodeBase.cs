@@ -23,6 +23,9 @@ public abstract partial class NodeBase : ObservableObject
     private double _height;
 
     [ObservableProperty]
+    private int _connectorSpaceing;
+
+    [ObservableProperty]
     private string _name;
 
     public ObservableCollection<NodeConnectorModel> Inputs { get; } = new ObservableCollection<NodeConnectorModel>();
@@ -31,7 +34,7 @@ public abstract partial class NodeBase : ObservableObject
 
     public NodeBase()
     {
-
+        ConnectorSpaceing = 10;
     }
 
     public void AddInputConnector()

@@ -45,40 +45,39 @@ public partial class NodeViewModelBase : ObservableRecipient
 
     public NodeViewModelBase(NodeBase node)
     {
-       ConnectorSpaceing = 50;
-
         InnerModel = node;
         X = InnerModel.X;
-        Y= InnerModel.Y;
+        Y = InnerModel.Y;
         Width = InnerModel.Width;
         Height = InnerModel.Height;
         Name = InnerModel.Name;
-
+        ConnectorSpaceing = InnerModel.ConnectorSpaceing;
 
 
         InnerModel.PropertyChanged += (s, e) =>
         {
 
-            if (e.PropertyName == nameof(InnerModel.X))
+            switch (e.PropertyName)
             {
-
-                X = InnerModel.X;
-            }
-            else if (e.PropertyName == nameof(InnerModel.Y))
-            {
-
-                Y = InnerModel.Y;
-            }
-            else if (e.PropertyName == nameof(InnerModel.Width))
-            {
-
-                Width = InnerModel.Width;
-            }
-            else if (e.PropertyName == nameof(InnerModel.Height))
-            {
-
-                Height = InnerModel.Height;
-            }
+                case nameof(InnerModel.X):
+                    X = InnerModel.X;
+                    break;
+                case nameof(InnerModel.Y):
+                    Y = InnerModel.Y;
+                    break;
+                case nameof(InnerModel.Width):
+                    Width = InnerModel.Width;
+                    break;
+                case nameof(InnerModel.Height):
+                    Height = InnerModel.Height;
+                    break;
+                case nameof(InnerModel.Name):
+                    Name = InnerModel.Name;
+                    break;
+                case nameof(InnerModel.ConnectorSpaceing):
+                    ConnectorSpaceing = InnerModel.ConnectorSpaceing;
+                    break;
+            };
         };
 
         InnerModel.Inputs.CollectionChanged += (s, e) =>

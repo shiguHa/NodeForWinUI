@@ -38,11 +38,12 @@ public partial class MainViewModel : ObservableRecipient
         NodeNetwork.Nodes.Add(constantNode1);
         NodeNetwork.Nodes.Add(constantNode2);
 
+        constantNode2.AddInputConnector();
 
         var connectionModel = new NodeConnectionModel();
 
         var connectionViewModel = new NodeConnectionViewModel(connectionModel);
-        connectionViewModel.Connect(constantNode1.Outputs[0], constantNode2.Inputs[0]);
+        connectionViewModel.Connect( constantNode1.Outputs[0], constantNode2.Inputs[0]);
 
         NodeNetwork.Connections.Add(connectionViewModel);
 
